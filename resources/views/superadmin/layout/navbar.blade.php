@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-success">
     <a class="navbar-brand text-white" href="{{route('welcome.home')}}">Nijhum <span class="text-warning">Dwip</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,26 +27,17 @@
         <li class="nav-item">
           <a class="nav-link text-white" href="{{route('welcome.home')}}">Contact Us</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-white" href="{{route('super.admin.dashboard')}}">Super Admin</a>
-        </li>
-        
       </ul>
-     
-      @Auth
-      <a href="{{route('admin.dashboard')}}"><span class="text-white">Admin Dashboard</span></a>
-
-      <a href="{{route('all.logout')}}"><span class="text-white p-2">Logout</span></a>
-     
-          @else
-
-          <div>
-            <ul class="navbar-nav ml-auto">
-              <li><a class="nav-link text-white" href="{{route('admin.login')}}">Login</a></li>
-              <li><a class="nav-link text-white" href="{{route('admin.register')}}">Register</a></li>
-            </ul>
-            </div>
-          @endAuth
+      
+        <div>
+          <ul class="navbar-nav ml-auto">
+            <li><a class="nav-link text-white" href="{{route('admin.login')}}">Login</a></li>
+            <li><a class="nav-link text-white" href="{{route('admin.register')}}">Register</a></li>
+          </ul>
+          
+          
+       
+        </div>
         
         
       

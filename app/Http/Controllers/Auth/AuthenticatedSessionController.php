@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -23,14 +24,24 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+          $url = '';
+        if($request->user()-> role === 'superadmin'){
+             $url = '/super/admin/dashboard';
+        }
+        elseif($request->user()-> role === 'admin'){
+             $url = '/admin/dashboard';
+        }
+        elseif($request->user()->role === 'user'){
+             $url = '/user/dashboard';
+        }
+       return redirect()->intended($url);
     }
+    
 
     /**
      * Destroy an authenticated session.
@@ -43,6 +54,6 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/user/dashboard');
     }
 }

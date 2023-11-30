@@ -7,77 +7,36 @@
    
  
 <div class="blog">
-<div class="blog-posts pure-g">
-    <div class="pure-u-1 pure-u-md-1-2">
+    <h2 class="text-info pt-3 ">All Post</h2>
+    <div class="blog-posts pure-g pt-4">
+
+      
+
+        <div class="pure-u-1 pure-u-md-1-2">
         <article class="blog-post">
-            <h2 class="blog-post-title">Feature 1</h2>
-            <p class="blog-post-date">January 1, 2021</p>
+            @foreach ($post as $item)
+            <h2 class="blog-post-title">{{$item->post_heading}}</h2>
+            <p class="blog-post-date">{{$item->created_at->format('l, F j, Y')}}</p>
             <p class="blog-post-content">
-                The website offers a variety of articles 
-                and tutorials on different programming 
-                languages, data structures, and algorithms,
-                making it a great resource for anyone
-                looking to improve their coding skills. 
-                The website also provides a platform for 
-                users to test their skills by solving 
-                practice problems, which are accompanied 
-                by detailed solutions and explanations.
-            </p>
+                {{ \Illuminate\Support\Str::words($item->details_post, 100, '...') }}
+                <span id="postContent_{{ $item->id }}" style="display:none;">{{ $item->details_post }}</span>
+            </p><a href="#" onclick="togglePostContent({{ $item->id }})">See More</a>
+            @endforeach
         </article>
+     </div>
+    
     </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-        <article class="blog-post">
-            <h2 class="blog-post-title">Feature 2</h2>
-            <p class="blog-post-date">January 2, 2021</p>
-            <p class="blog-post-content">
-                The website is well-organized and easy 
-                to navigate, making it easy for users 
-                to find the information they need. The 
-                articles and tutorials are well-written 
-                and easy to understand, making them
-                accessible to users of all skill levels. 
-                The website also has a search bar, which 
-                allows users to quickly find specific 
-                information or topics.
-            </p>
-        </article>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-        <article class="blog-post">
-            <h2 class="blog-post-title">Feature 2</h2>
-            <p class="blog-post-date">January 2, 2021</p>
-            <p class="blog-post-content">
-                The website is well-organized and easy 
-                to navigate, making it easy for users 
-                to find the information they need. The 
-                articles and tutorials are well-written 
-                and easy to understand, making them
-                accessible to users of all skill levels. 
-                The website also has a search bar, which 
-                allows users to quickly find specific 
-                information or topics.
-            </p>
-        </article>
-    </div>
-    <div class="pure-u-1 pure-u-md-1-2">
-        <article class="blog-post">
-            <h2 class="blog-post-title">Feature 2</h2>
-            <p class="blog-post-date">January 2, 2021</p>
-            <p class="blog-post-content">
-                The website is well-organized and easy 
-                to navigate, making it easy for users 
-                to find the information they need. The 
-                articles and tutorials are well-written 
-                and easy to understand, making them
-                accessible to users of all skill levels. 
-                The website also has a search bar, which 
-                allows users to quickly find specific 
-                information or topics.
-            </p>
-        </article>
-    </div>
-</div>
+  
 </div>
 
-    
+<script>
+    function togglePostContent(postId) {
+        var postContent = document.getElementById('postContent_' + postId);
+        if (postContent.style.display === 'none') {
+            postContent.style.display = 'inline';
+        } else {
+            postContent.style.display = 'none';
+        }
+    }
+</script>
 @endsection

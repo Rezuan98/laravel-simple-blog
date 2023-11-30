@@ -11,7 +11,7 @@
     <h2>Please Login to Create Post</h2>
 
        <!-- Email input -->
-<form method="post" action="{{route('admin.logging')}}">
+<form method="post" action="{{route('login')}}">
     @csrf
         <div class="form-outline mb-4">
             <label class="form-label" for="form2Example1">Email address</label>
@@ -44,7 +44,7 @@
           </div>
         
     <br>
-          <button type="button" class="btn btn-success btn-block mb-4"><span class="text-white">Sign in</span></button>
+          <button type="submit" class="btn btn-success btn-block mb-4"><span class="text-white">Sign in</span></button>
 </form>
     
       <!-- Register buttons -->
